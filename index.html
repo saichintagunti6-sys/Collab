@@ -3,54 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Watch Dashboard</title>
+  <title>Animation Portfolio Dashboard</title>
   <style>
     /* ===== Global Styles ===== */
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: #f8f9fa;
-      color: #333;
+      background: linear-gradient(135deg, #1a1a1a, #111);
+      color: #eee;
     }
+    a { text-decoration: none; }
+
+    /* ===== Header ===== */
     header {
-      background: #111;
+      background: rgba(0,0,0,0.9);
       color: white;
       padding: 15px 25px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 2px solid #ff9800;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     header h1 {
       margin: 0;
       font-size: 22px;
+      letter-spacing: 1px;
     }
     nav a {
       color: white;
       margin-left: 20px;
-      text-decoration: none;
       font-size: 14px;
       transition: 0.3s;
     }
     nav a:hover {
-      color: #f0c040;
+      color: #ff9800;
     }
 
     /* ===== Dashboard Layout ===== */
     .dashboard {
       display: grid;
-      grid-template-columns: 220px 1fr;
+      grid-template-columns: 240px 1fr;
       min-height: calc(100vh - 60px);
     }
 
     /* Sidebar */
     .sidebar {
-      background: #222;
+      background: #111;
       color: white;
       padding: 20px;
+      border-right: 2px solid #ff9800;
     }
     .sidebar h2 {
       font-size: 18px;
       margin-bottom: 20px;
+      color: #ff9800;
     }
     .sidebar ul {
       list-style: none;
@@ -61,138 +71,73 @@
     }
     .sidebar ul li a {
       color: #ddd;
-      text-decoration: none;
       font-size: 14px;
       transition: 0.3s;
+      display: flex;
+      align-items: center;
     }
     .sidebar ul li a:hover {
-      color: #f0c040;
+      color: #ff9800;
+      transform: translateX(5px);
     }
 
     /* Main Content */
     .main {
       padding: 20px;
+      animation: fadeIn 1.5s ease;
+    }
+    .section {
+      margin-bottom: 50px;
+    }
+    .section h2 {
+      margin-bottom: 15px;
+      font-size: 22px;
+      border-left: 4px solid #ff9800;
+      padding-left: 10px;
     }
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 20px;
     }
     .card {
-      background: white;
+      background: rgba(255,255,255,0.05);
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      padding: 15px;
       text-align: center;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
+      backdrop-filter: blur(10px);
     }
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 25px rgba(255,152,0,0.3);
     }
-    .card img {
+    .card video, .card img {
       max-width: 100%;
-      height: 160px;
-      object-fit: cover;
+      height: 180px;
       border-radius: 10px;
+      object-fit: cover;
     }
     .card h3 {
       margin: 10px 0 5px;
+      font-size: 16px;
+      color: #ffcc80;
     }
     .card p {
-      font-size: 14px;
-      color: #666;
-    }
-    .btn {
-      margin-top: 10px;
-      display: inline-block;
-      padding: 8px 16px;
-      background: #111;
-      color: white;
-      border-radius: 6px;
       font-size: 13px;
-      text-decoration: none;
-      transition: 0.3s;
+      color: #aaa;
     }
-    .btn:hover {
-      background: #f0c040;
-      color: #111;
+
+    /* Contact */
+    .contact {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 600px;
+      backdrop-filter: blur(10px);
     }
-    /* Footer */
-    footer {
-      background: #111;
-      color: #ccc;
-      text-align: center;
+    .contact input, .contact textarea {
+      width: 100%;
       padding: 10px;
-      font-size: 13px;
-    }
-  </style>
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <h1>⌚ Watch Dashboard</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Products</a>
-      <a href="#">Orders</a>
-      <a href="#">Profile</a>
-    </nav>
-  </header>
-
-  <!-- Dashboard -->
-  <div class="dashboard">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <h2>Menu</h2>
-      <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">New Watches</a></li>
-        <li><a href="#">Best Sellers</a></li>
-        <li><a href="#">Customers</a></li>
-        <li><a href="#">Settings</a></li>
-      </ul>
-    </aside>
-
-    <!-- Main -->
-    <main class="main">
-      <h2>Available Watches</h2>
-      <div class="cards">
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" alt="Watch 1">
-          <h3>Classic Leather</h3>
-          <p>Elegant design with premium leather strap.</p>
-          <a href="#" class="btn">Buy Now</a>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=600" alt="Watch 2">
-          <h3>Sports Edition</h3>
-          <p>Durable and waterproof digital sports watch.</p>
-          <a href="#" class="btn">Buy Now</a>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10?w=600" alt="Watch 3">
-          <h3>Luxury Gold</h3>
-          <p>Luxury gold-plated chronograph for elites.</p>
-          <a href="#" class="btn">Buy Now</a>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Watch Dashboard. All rights reserved.
-  </footer>
-
-  <!-- JavaScript -->
-  <script>
-    // Example: alert when clicking "Buy Now"
-    document.querySelectorAll(".btn").forEach(btn => {
-      btn.addEventListener("click", function(e){
-        e.preventDefault();
-        alert("Item added to cart!");
-      });
-    });
-  </script>
-</body>
-</html>
+      margin: 10px 0;
